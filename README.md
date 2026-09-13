@@ -14,3 +14,9 @@ React 19 + TypeScript + Vite、Tauri 2 + Rust で構成した Windows デスク�
 `npm install` 後、`npm run tauri dev`。Windows ビルドは `npm run tauri build`。
 
 初回には任意の保存先を指定してください。タスクの変更はその `.tdf` ファイルへ自動保存されます。
+
+## 初回起動の流れ
+
+1. 「新規ファイル」を選び、保存先と `.tdf` ファイル名を指定します。
+2. カテゴリを選んで、付箋紙を追加します。
+3. 以後の変更は、選んだ `.tdf` ファイルへ自動保存されます。
