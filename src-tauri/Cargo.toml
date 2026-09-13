@@ -1,0 +1,19 @@
+[package]
+name = "sticky-todo"
+version = "1.0.0"
+description = "Encrypted sticky note task manager"
+edition = "2021"
+
+[lib]
+name = "sticky_todo_lib"
+crate-type = ["cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }
+tauri-plugin-dialog = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+rusqlite = { version = "0.37", features = ["bundled"] }

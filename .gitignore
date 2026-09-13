@@ -1,0 +1,11 @@
+node_modules/
+dist/
+src-tauri/target/
+*.log
+*.log.err
+*.tsbuildinfo
+work/
+manual-screen.png
+manual-render/
+__pycache__/
+.DS_Store
