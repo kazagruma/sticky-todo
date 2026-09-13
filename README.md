@@ -2,6 +2,8 @@
 
 React 19 + TypeScript + Vite、Tauri 2 + Rust で構成した Windows デスクトップアプリです。
 
+ブラウザではWeb版MVPとして動作し、タスクとカテゴリをブラウザの保存領域に保存します。Web版はまだアカウント共有・サーバー保存には対応していないため、同じブラウザ・端末内での試作公開用です。
+
 - 保存ファイル：SQLite ベースの `.tdf`（ToDo File）
 - ファイルの作成・選択：Tauri Dialog プラグイン
 - UI：Lucide React アイコン、8つの固定レーン、期限・優先度ソート、期限色
@@ -12,6 +14,8 @@ React 19 + TypeScript + Vite、Tauri 2 + Rust で構成した Windows デスク�
 ## 開発
 
 `npm install` 後、`npm run tauri dev`。Windows ビルドは `npm run tauri build`。
+
+Web版のローカル確認は `npm run dev` で起動し、表示されたURLをブラウザで開きます。本番公開では、次の段階でログインと共有データベースを追加します。
 
 初回には任意の保存先を指定してください。タスクの変更はその `.tdf` ファイルへ自動保存されます。
 
