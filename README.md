@@ -15,7 +15,7 @@ React 19 + TypeScript + Vite、Tauri 2 + Rust で構成した Windows デスク�
 
 `npm install` 後、`npm run tauri dev`。Windows ビルドは `npm run tauri build`。
 
-Web版のローカル確認は `npm run dev` で起動し、表示されたURLをブラウザで開きます。本番公開では、次の段階でログインと共有データベースを追加します。
+Web版のローカル確認は `npm run dev` で起動し、表示されたURLをブラウザで開きます。Web版はこの端末のブラウザ保存領域を使い、`.tdf`ファイルの作成・選択はデスクトップ版で行います。本番公開では、次の段階でログインと共有データベースを追加します。
 
 初回には任意の保存先を指定してください。タスクの変更はその `.tdf` ファイルへ自動保存されます。
 
