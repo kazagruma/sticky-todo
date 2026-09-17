@@ -1,0 +1,19 @@
+name: Uptime check
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  health-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check production URL
+        run: curl --fail --silent --show-error --location --max-time 20 https://sticky-todo.pages.dev/ > /dev/null
+
+      - name: Check staging URL
+        run: curl --fail --silent --show-error --location --max-time 20 https://sticky-todo-staging.pages.dev/ > /dev/null
