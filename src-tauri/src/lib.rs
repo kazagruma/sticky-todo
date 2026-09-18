@@ -10,6 +10,8 @@ fn connection(path: &str) -> Result<Connection, String> {
     let conn = Connection::open(path).map_err(|e| e.to_string())?;
     conn.execute_batch("CREATE TABLE IF NOT EXISTS tasks (id TEXT PRIMARY KEY, category TEXT NOT NULL, title TEXT NOT NULL, body TEXT NOT NULL, due_date TEXT, priority TEXT NOT NULL, created_at TEXT NOT NULL, done INTEGER NOT NULL DEFAULT 0, done_at TEXT, locked INTEGER NOT NULL DEFAULT 0);")
         .map_err(|e| e.to_string())?;
+    conn.execute("CREATE INDEX IF NOT EXISTS idx_tasks_created_at ON tasks(created_at)", [])
+        .map_err(|e| e.to_string())?;
     let _ = conn.execute("ALTER TABLE tasks ADD COLUMN done_at TEXT", []);
     let _ = conn.execute("ALTER TABLE tasks ADD COLUMN locked INTEGER NOT NULL DEFAULT 0", []);
     Ok(conn)
