@@ -2,6 +2,7 @@ import { createServer } from "node:http";
 import { createReadStream, existsSync, statSync } from "node:fs";
 import { extname, join, normalize } from "node:path";
 import { fileURLToPath } from "node:url";
+import { decodeRequestPath } from "./server-path.mjs";
 
 const root = join(fileURLToPath(new URL(".", import.meta.url)), "dist");
 const port = Number(process.env.PORT || 4173);
@@ -17,7 +18,13 @@ const types = {
 };
 
 createServer((request, response) => {
-  const pathname = decodeURIComponent((request.url || "/").split("?")[0]);
+  const pathname = decodeRequestPath(request.url);
+  if (pathname === null) {
+    response.writeHead(400, { "Content-Type": "text/plain; charset=utf-8", "X-Content-Type-Options": "nosniff" });
+    response.end("Bad Request");
+    return;
+  }
+
   const relative = normalize(pathname).replace(/^([.][.][\\/])+/, "");
   const candidate = join(root, relative === "." ? "index.html" : relative);
   const file = existsSync(candidate) && statSync(candidate).isFile() ? candidate : join(root, "index.html");
