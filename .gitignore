@@ -1,4 +1,7 @@
 node_modules/
+.rag-cache/
+.agent-output/
+.sli-output/
 dist/
 src-tauri/target/
 .env

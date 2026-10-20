@@ -3,6 +3,7 @@ import { createReadStream, existsSync, statSync } from "node:fs";
 import { extname, join, normalize } from "node:path";
 import { fileURLToPath } from "node:url";
 import { decodeRequestPath } from "./server-path.mjs";
+import { attachAudit } from "./audit.mjs";
 
 const root = join(fileURLToPath(new URL(".", import.meta.url)), "dist");
 const port = Number(process.env.PORT || 4173);
@@ -18,6 +19,7 @@ const types = {
 };
 
 createServer((request, response) => {
+  attachAudit(request, response);
   const pathname = decodeRequestPath(request.url);
   if (pathname === null) {
     response.writeHead(400, { "Content-Type": "text/plain; charset=utf-8", "X-Content-Type-Options": "nosniff" });

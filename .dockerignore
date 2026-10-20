@@ -1,0 +1,16 @@
+node_modules
+dist
+.git
+.github
+src-tauri/target
+*.log
+*.log.err
+*.tsbuildinfo
+work
+manual-screen.png
+manual-render
+.env
+.env.*
+.rag-cache
+.agent-output
+.sli-output
